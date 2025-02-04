@@ -1,15 +1,12 @@
 mod config;
 
-use std::net::{Ipv4Addr};
-use std::mem::{size_of};
-// use std::os::unix::io::AsRawFd;
-// use std::io;
+use std::net::Ipv4Addr;
+use std::mem::size_of;
 use std::os::unix::io::RawFd;
-use std::io::{Read};
 use libc::{
     AF_INET, SOCK_RAW, IPPROTO_IP, IPPROTO_IPIP,
-    socket, recvfrom, sendto, bind, setsockopt,
-    sockaddr_storage, in_addr, sockaddr_in, socklen_t, c_void
+    socket, recvfrom, sendto, setsockopt,
+    in_addr, sockaddr_in, socklen_t, c_void
 };
 
 use crate::config::*;
@@ -206,32 +203,6 @@ fn main() {
                 send_packet(send_sock, &decapsulated_buf, dst_ip);
                 println!("Decapsulated packet sent successfully!");
             }
-
-                // let dest_addr: sockaddr_in = sockaddr_in {
-                //     sin_family: AF_INET as u8,
-                //     sin_len: 0,
-                //     sin_port: 0,
-                //     sin_addr: in_addr { s_addr: u32::from(dst_ip) },
-                //     sin_zero: [0; 8],
-                // };
-
-                // let send_result = sendto(
-                //     send_sock,
-                //     new_buf.as_ptr() as *const c_void,
-                //     new_buf.len(),
-                //     0,
-                //     &dest_addr as *const _ as *const _,
-                //     std::mem::size_of::<sockaddr_in>() as socklen_t,
-                // );
-
-                // if send_result < 0 {
-                //     println!("Failed to send encapsulated packet");
-                // } else {
-                //     println!("Encapsulated packet sent successfully!");
-                // }
-
-            }
         }
     }
-
 }

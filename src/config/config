@@ -1,6 +1,7 @@
 Encap_Type = IPinIP #GRE, GTP, UDP
 Target_Addr =  192.168.2.10
 New_Target_Addr = 192.168.10.2
+MTU = 1500
 
 #UDP port for Encapsulation
 Src_Port = 2152
